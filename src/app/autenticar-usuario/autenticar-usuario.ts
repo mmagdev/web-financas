@@ -26,10 +26,15 @@ export class AutenticarUsuario {
   //Função para fazer a requisição para a API.
   //Será executada quando o botão "submit" for clicado
   autenticar() {
-      //Enviando uma requisição HTTP POST para a API
-      this.http.post('http://localhost:8082/api/v1/usuarios/autenticar', this.formAutenticar.value)
-      .subscribe((response) => {
-        console.log(response);
+    //Enviando uma requisição HTTP POST para a API
+    this.http.post('http://localhost:8082/api/v1/usuarios/autenticar', this.formAutenticar.value)
+      .subscribe({
+        next: (response) => {
+          console.log('Sucesso!', response);
+        },
+        error: (e) => {
+          console.log('Erro!', e.error);
+        }
       });
     }
 }
